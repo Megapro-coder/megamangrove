@@ -1,10 +1,10 @@
-import React, { Suspense } from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-
-// Lazy loading des pages
-const HomePage = React.lazy(() => import('./pages/HomePage'));
-const RestaurantPage = React.lazy(() => import('./pages/RestaurantPage'));
-const HotelPage = React.lazy(() => import('./pages/HotelPage'));
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import Navbar from './components/Navbar';
+import HomePage from './pages/HomePage';
+import RestaurantPage from './pages/RestaurantPage';
+import HotelPage from './pages/HotelPage';
 import BarPage from './pages/BarPage';
 import EventsPage from './pages/EventsPage';
 import GalleryPage from './pages/GalleryPage';
@@ -19,7 +19,11 @@ function App() {
       <div className="min-h-screen bg-white">
         <ScrollToTop />
         <Navbar />
-        <Suspense fallback={<div className="flex justify-center items-center h-64">Chargement...</div>}>
+        <motion.main
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/restaurant" element={<RestaurantPage />} />
@@ -29,7 +33,7 @@ function App() {
             <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/contact" element={<ContactPage />} />
           </Routes>
-        </Suspense>
+        </motion.main>
         <FloatingReservation />
         <Footer />
       </div>
