@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Wine, ShoppingCart, Plus, Minus, X, MessageCircle } from 'lucide-react';
-import { useState, useMemo } from 'react';
 
 const BarPage = () => {
   // États pour le panier
